@@ -11,11 +11,7 @@ import {
 
 onAuthStateChanged(auth, (user) => {
 
-  if (!user) {
-
-    window.location.href = "login.html";
-
-  } else {
+  if (user) {
 
     console.log("Utilisateur connecté :", user.email);
 
