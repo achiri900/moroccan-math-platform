@@ -1,9 +1,15 @@
 import { auth } from "./firebase.js";
-
+const db = getFirestore();
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  setDoc
+} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
 // ===========================
 // UTILITY FUNCTIONS
@@ -153,7 +159,10 @@ window.register = async function (event) {
       email.value.trim(),
       password.value
     );
-
+await setDoc(doc(db, "users", userCredential.user.uid), {
+  email: email.value.trim(),
+  createdAt: new Date().toISOString()
+});
     showMessage("تم إنشاء الحساب بنجاح! سيتم توجيهك للدخول...", true);
     
     // Clear form
