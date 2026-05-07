@@ -1,5 +1,11 @@
-import { auth } from "./firebase.js";
 
+import { auth } from "./firebase.js";
+import {
+  getFirestore,
+  doc,
+  getDoc
+  const db = getFirestore(auth.app);
+} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 import {
   onAuthStateChanged,
   signOut
@@ -9,7 +15,7 @@ import {
 // AUTHENTICATION
 // ===========================
 
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
 
   if (user) {
 
@@ -19,7 +25,16 @@ onAuthStateChanged(auth, (user) => {
 
     if (userEmail) {
 
-      userEmail.innerText = user.email;
+      const userDoc = await getDoc(doc(db, "users", user.uid));
+
+      if (userDoc.exists()) {
+
+        const data = userDoc.data();
+
+        userEmail.innerText =
+          data.firstName + " " + data.lastName;
+
+      }
 
     }
 
