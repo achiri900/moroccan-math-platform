@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>درس الجمع والطرح</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    body{
+      font-family:Arial;
+      background:#f8fafc;
+      margin:0;
+      padding:0;
+    }
+
+    .lesson-container{
+      max-width:900px;
+      margin:auto;
+      padding:20px;
+    }
+
+    .lesson-header{
+      background:#2563eb;
+      color:white;
+      padding:20px;
+      border-radius:15px;
+      margin-bottom:20px;
+    }
+
+    .video-container{
+      margin:20px 0;
+      border-radius:15px;
+      overflow:hidden;
+    }
+
+    iframe{
+      width:100%;
+      height:450px;
+      border:none;
+    }
+
+    .example-box{
+      background:white;
+      padding:20px;
+      border-radius:15px;
+      margin-top:20px;
+      box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .quiz-box{
+      background:white;
+      padding:20px;
+      border-radius:15px;
+      margin-top:20px;
+      box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .quiz-btn{
+      padding:12px 20px;
+      margin:10px;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
+      background:#2563eb;
+      color:white;
+      font-size:16px;
+    }
+
+    .quiz-btn:hover{
+      background:#1d4ed8;
+    }
+
+    #quizResult{
+      margin-top:15px;
+      font-weight:bold;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<div class="lesson-container">
+
+  <div class="lesson-header">
+
+    <h1>➕➖ درس الجمع والطرح</h1>
+
+    <p>
+      تعلم أساسيات الجمع والطرح بطريقة سهلة وممتعة
+    </p>
+
+  </div>
+
+  <div class="video-container">
+
+    <iframe
+      src="https://www.youtube.com/embed/5NmxFhwu0RA"
+      allowfullscreen>
+    </iframe>
+
+  </div>
+
+  <div class="example-box">
+
+    <h2>📘 أمثلة</h2>
+
+    <p>5 + 3 = 8</p>
+
+    <p>10 - 4 = 6</p>
+
+    <p>12 + 7 = 19</p>
+
+  </div>
+
+  <div class="quiz-box">
+
+    <h2>🧠 اختبار سريع</h2>
+
+    <p>كم يساوي 7 + 5 ؟</p>
+
+    <button class="quiz-btn"
+      onclick="checkQuiz(10)">
+      10
+    </button>
+
+    <button class="quiz-btn"
+      onclick="checkQuiz(12)">
+      12
+    </button>
+
+    <button class="quiz-btn"
+      onclick="checkQuiz(15)">
+      15
+    </button>
+
+    <p id="quizResult"></p>
+
+  </div>
+
+</div>
+
+<script>
+
+function checkQuiz(answer){
+
+  const result =
+    document.getElementById("quizResult");
+
+  if(answer === 12){
+
+    result.innerText =
+      "✅ إجابة صحيحة";
+
+    result.style.color = "green";
+
+  }else{
+
+    result.innerText =
+      "❌ حاول مرة أخرى";
+
+    result.style.color = "red";
+
+  }
+
+}
+
+</script>
+
+</body>
+</html>

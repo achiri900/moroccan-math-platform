@@ -40,6 +40,123 @@ onAuthStateChanged(auth, async (user) => {
       if (userDoc.exists()) {
 
         const data = userDoc.data();
+        const streakElement =
+  document.getElementById("studentStreak");
+
+let streak = data.streak || 0;
+
+const lastLogin =
+  data.lastLoginDate || null;
+
+const today =
+  new Date().toDateString();
+
+if (lastLogin !== today) {
+
+  streak++;
+
+  await updateDoc(doc(db, "users", user.uid), {
+
+    streak: streak,
+
+    lastLoginDate: today
+
+  });
+
+}
+
+if (streakElement) {
+
+  streakElement.innerText =
+    streak + " أيام";
+
+}
+        if (data.currentQuestionIndex !== undefined) {
+
+  currentQuestionIndex =
+    data.currentQuestionIndex;
+
+}
+
+if (data.currentDifficulty) {
+
+  currentDifficulty =
+    data.currentDifficulty;
+
+}
+
+if (data.score) {
+
+  score = data.score;
+
+}
+
+if (data.correctAnswers) {
+
+  correctAnswers =
+    data.correctAnswers;
+
+}
+
+updateExerciseUI();
+
+updateScoreBoard();
+        const badge =
+  document.getElementById("studentBadge");
+
+const studentScoreValue =
+  data.score || 0;
+
+if (badge) {
+
+  if (studentScoreValue >= 100) {
+
+    badge.innerText = "🏆 خبير الرياضيات";
+
+  } else if (studentScoreValue >= 50) {
+
+    badge.innerText = "🥈 متقدم";
+
+  } else if (studentScoreValue >= 10) {
+
+    badge.innerText = "🥉 مبتدئ";
+
+  } else {
+
+    badge.innerText = "✨ جديد";
+
+  }
+
+}
+        const progressFill =
+  document.getElementById("progressFill");
+
+const progressText =
+  document.getElementById("progressText");
+
+const progress =
+  Math.min((data.correctAnswers || 0) * 10, 100);
+
+if (progressFill) {
+
+  progressFill.style.width = progress + "%";
+
+}
+
+if (progressText) {
+
+  progressText.innerText = progress + "%";
+
+}
+        const lastLesson =
+  document.getElementById("lastLesson");
+
+if (lastLesson) {
+
+  lastLesson.innerText =
+    data.lastLesson || "لا يوجد";
+
+}
 const studentScore =
   document.getElementById("studentScore");
 
@@ -218,9 +335,38 @@ function closeLessonModal() {
   }
 }
 
-function startLessonContent() {
+async function startLessonContent() {
+
   closeLessonModal();
-  showNotification('تم بدء الدرس! سيتم توجيهك إلى محتوى الدرس.', 'success');
+
+  showNotification(
+    'تم بدء الدرس! سيتم حفظ تقدمك.',
+    'success'
+  );
+
+  const user = auth.currentUser;
+
+  if (!user) return;
+
+  try {
+
+    await updateDoc(doc(db, "users", user.uid), {
+
+      lastLesson: document.getElementById("modalTitle")
+        ?.innerText || "",
+
+      lastLessonDate: new Date().toISOString()
+
+    });
+
+    console.log("Lesson progress saved!");
+
+  } catch (error) {
+
+    console.error(error);
+
+  }
+
 }
 
 // ===========================
@@ -582,6 +728,18 @@ async function saveUserScore() {
   try {
 
     await updateDoc(doc(db, "users", user.uid), {
+
+  score: score,
+
+  correctAnswers: correctAnswers,
+
+  currentQuestionIndex: currentQuestionIndex,
+
+  currentDifficulty: currentDifficulty,
+
+  updatedAt: new Date().toISOString()
+
+});
 
       score: score,
 
