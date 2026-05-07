@@ -17,12 +17,14 @@ const db = getFirestore(auth.app);
 
 function getAuthElements() {
   return {
+    firstName: document.getElementById("firstName"),
+    lastName: document.getElementById("lastName"),
     email: document.getElementById("email"),
     password: document.getElementById("password"),
+    confirmPassword: document.getElementById("confirmPassword"),
     message: document.getElementById("message")
   };
 }
-
 function showMessage(text, isSuccess = false) {
   const { message } = getAuthElements();
   
@@ -142,10 +144,24 @@ window.register = async function (event) {
 
   clearMessage();
   
-  const { email, password, message } = getAuthElements();
+  const {
+  firstName,
+  lastName,
+  email,
+  password,
+  confirmPassword,
+  message
+} = getAuthElements();
   const registerBtn = document.querySelector(".register-btn") || event?.target;
 
   // Validation
+  if (password.value !== confirmPassword.value) {
+
+  showMessage("كلمتا المرور غير متطابقتين");
+
+  return;
+
+}
   if (!validateRegistration(email?.value, password?.value)) {
     return;
   }
@@ -160,8 +176,15 @@ window.register = async function (event) {
       password.value
     );
 await setDoc(doc(db, "users", userCredential.user.uid), {
+
+  firstName: firstName.value.trim(),
+
+  lastName: lastName.value.trim(),
+
   email: email.value.trim(),
+
   createdAt: new Date().toISOString()
+
 });
     showMessage("تم إنشاء الحساب بنجاح! سيتم توجيهك للدخول...", true);
     
