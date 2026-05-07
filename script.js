@@ -1,25 +1,25 @@
+import { auth } from "./firebase.js";
+
 import {
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
   collection,
   getDocs,
   query,
   orderBy,
   limit
 } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
-import {
-  setDoc,
-  updateDoc
-} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
-import { auth } from "./firebase.js";
-import {
-  getFirestore,
-  doc,
-  getDoc
-  const db = getFirestore(auth.app);
-} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
-import {
-  onAuthStateChanged,
-  signOut
-} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+
+const db = getFirestore(auth.app);
 
 // ===========================
 // AUTHENTICATION
