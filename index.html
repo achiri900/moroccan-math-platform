@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة الرياضيات المغربية - Moroccan Math Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <div class="logo">📐 الرياضيات المغربية</div>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">الصفحة الرئيسية</a></li>
+                <li><a href="#lessons" class="nav-link">الدروس</a></li>
+                <li><a href="#exercises" class="nav-link">التمارين</a></li>
+                <li><a href="#dashboard" class="nav-link">لوحة التحكم</a></li>
+                <li><a href="#contact" class="nav-link">اتصل بنا</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">مرحباً بك في منصة الرياضيات المغربية</h1>
+            <p class="hero-subtitle">تعلم الرياضيات بطريقة حديثة وتفاعلية</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="document.getElementById('lessons').scrollIntoView({behavior: 'smooth'})">ابدأ التعلم</button>
+                <button class="btn btn-secondary" onclick="document.getElementById('dashboard').scrollIntoView({behavior: 'smooth'})">لوحة التحكم</button>
+            </div>
+        </div>
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </section>
+
+    <!-- Lessons Section -->
+    <section class="lessons" id="lessons">
+        <div class="container">
+            <div class="section-header">
+                <h2>الدروس الرياضية</h2>
+                <p>استكشف مجموعة شاملة من دروس الرياضيات المتقدمة</p>
+            </div>
+
+            <div class="lessons-grid">
+                <!-- Algebra Card -->
+                <div class="lesson-card">
+                    <div class="card-icon">📊</div>
+                    <h3>الجبر</h3>
+                    <p>تعلم المعادلات والمتغيرات والعمليات الجبرية الأساسية</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 65%"></div>
+                    </div>
+                    <span class="progress-text">65% مكتمل</span>
+                    <button class="btn btn-outline" onclick="startLesson('algebra')">ابدأ الآن</button>
+                </div>
+
+                <!-- Geometry Card -->
+                <div class="lesson-card">
+                    <div class="card-icon">🔶</div>
+                    <h3>الهندسة</h3>
+                    <p>استكشف الأشكال والزوايا والمساحات والحجوم</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 40%"></div>
+                    </div>
+                    <span class="progress-text">40% مكتمل</span>
+                    <button class="btn btn-outline" onclick="startLesson('geometry')">ابدأ الآن</button>
+                </div>
+
+                <!-- Trigonometry Card -->
+                <div class="lesson-card">
+                    <div class="card-icon">〰️</div>
+                    <h3>حساب المثلثات</h3>
+                    <p>تعلم الدوال المثلثية والموجات والتطبيقات العملية</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 50%"></div>
+                    </div>
+                    <span class="progress-text">50% مكتمل</span>
+                    <button class="btn btn-outline" onclick="startLesson('trigonometry')">ابدأ الآن</button>
+                </div>
+
+                <!-- Calculus Card -->
+                <div class="lesson-card">
+                    <div class="card-icon">∫</div>
+                    <h3>حساب التفاضل والتكامل</h3>
+                    <p>اكتشف الحدود والمشتقات والتكاملات</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 30%"></div>
+                    </div>
+                    <span class="progress-text">30% مكتمل</span>
+                    <button class="btn btn-outline" onclick="startLesson('calculus')">ابدأ الآن</button>
+                </div>
+
+                <!-- Statistics Card -->
+                <div class="lesson-card">
+                    <div class="card-icon">📈</div>
+                    <h3>الإحصائيات</h3>
+                    <p>تحليل البيانات والاحتمالات والتوزيعات</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                    <span class="progress-text">75% مكتمل</span>
+                    <button class="btn btn-outline" onclick="startLesson('statistics')">ابدأ الآن</button>
+                </div>
+
+                <!-- Linear Algebra Card -->
+                <div class="lesson-card">
+                    <div class="card-icon">⬜</div>
+                    <h3>الجبر الخطي</h3>
+                    <p>المصفوفات والمتجهات والعمليات الخطية</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 45%"></div>
+                    </div>
+                    <span class="progress-text">45% مكتمل</span>
+                    <button class="btn btn-outline" onclick="startLesson('linearalgebra')">ابدأ الآن</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exercises Section -->
+    <section class="exercises" id="exercises">
+        <div class="container">
+            <div class="section-header">
+                <h2>التمارين العملية</h2>
+                <p>مارس مهاراتك من خلال تمارين تفاعلية</p>
+            </div>
+
+            <div class="exercises-container">
+                <div class="exercise-panel">
+                    <h3>اختر مستوى الصعوبة</h3>
+                    <div class="difficulty-buttons">
+                        <button class="difficulty-btn" onclick="setDifficulty('easy')">سهل</button>
+                        <button class="difficulty-btn active" onclick="setDifficulty('medium')">متوسط</button>
+                        <button class="difficulty-btn" onclick="setDifficulty('hard')">صعب</button>
+                    </div>
+                </div>
+
+                <div class="exercise-question">
+                    <div class="question-number">السؤال: <span id="questionNum">1</span>/10</div>
+                    <h4 id="questionText">احسب: 15 + 23 = ?</h4>
+                    
+                    <div class="answer-options">
+                        <button class="option-btn" onclick="checkAnswer(this, 38)">38</button>
+                        <button class="option-btn" onclick="checkAnswer(this, 35)">35</button>
+                        <button class="option-btn" onclick="checkAnswer(this, 40)">40</button>
+                        <button class="option-btn" onclick="checkAnswer(this, 42)">42</button>
+                    </div>
+
+                    <div class="question-controls">
+                        <button class="btn btn-outline" onclick="previousQuestion()">السابق</button>
+                        <button class="btn btn-primary" onclick="nextQuestion()">التالي</button>
+                    </div>
+                </div>
+
+                <div class="score-panel">
+                    <h3>إحصائياتك</h3>
+                    <div class="stat-item">
+                        <span>النقاط:</span>
+                        <span id="score">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>الإجابات الصحيحة:</span>
+                        <span id="correct">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>معدل النجاح:</span>
+                        <span id="successRate">0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard" id="dashboard">
+        <div class="container">
+            <div class="section-header">
+                <h2>لوحة تحكم الطالب</h2>
+                <p>تابع تقدمك وإنجازاتك</p>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Profile Card -->
+                <div class="dashboard-card profile-card">
+                    <div class="profile-avatar">👨‍🎓</div>
+                    <h3>أحمد محمد</h3>
+                    <p class="subtitle">طالب متفوق</p>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <span class="stat-label">المستوى</span>
+                            <span class="stat-value">5</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">الخبرة</span>
+                            <span class="stat-value">2,450 XP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievements Card -->
+                <div class="dashboard-card">
+                    <h3>🏆 الإنجازات</h3>
+                    <div class="achievements">
+                        <div class="achievement" title="حل 10 تمارين">⭐</div>
+                        <div class="achievement" title="معدل 100%">💯</div>
+                        <div class="achievement" title="7 أيام متتالية">🔥</div>
+                        <div class="achievement" title="أكمل 5 دروس">📚</div>
+                        <div class="achievement locked" title="قريباً">🔒</div>
+                    </div>
+                </div>
+
+                <!-- Weekly Activity Card -->
+                <div class="dashboard-card">
+                    <h3>📅 النشاط الأسبوعي</h3>
+                    <div class="activity-chart">
+                        <div class="activity-bar" style="height: 70%;" title="السبت"></div>
+                        <div class="activity-bar" style="height: 85%;"></div>
+                        <div class="activity-bar" style="height: 60%;"></div>
+                        <div class="activity-bar" style="height: 90%;"></div>
+                        <div class="activity-bar" style="height: 75%;"></div>
+                        <div class="activity-bar" style="height: 50%;"></div>
+                        <div class="activity-bar" style="height: 80%;"></div>
+                    </div>
+                    <div class="day-labels">
+                        <span>س</span><span>أ</span><span>ث</span><span>و</span><span>خ</span><span>ج</span><span>ن</span>
+                    </div>
+                </div>
+
+                <!-- Top Subjects -->
+                <div class="dashboard-card">
+                    <h3>📊 أفضل المواضيع</h3>
+                    <div class="subjects-list">
+                        <div class="subject-item">
+                            <span>الجبر</span>
+                            <div class="subject-score">95%</div>
+                        </div>
+                        <div class="subject-item">
+                            <span>الهندسة</span>
+                            <div class="subject-score">87%</div>
+                        </div>
+                        <div class="subject-item">
+                            <span>الإحصائيات</span>
+                            <div class="subject-score">92%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Goals Card -->
+                <div class="dashboard-card">
+                    <h3>🎯 الأهداف</h3>
+                    <div class="goals-list">
+                        <div class="goal-item">
+                            <input type="checkbox" checked>
+                            <span>أكمل 20 تمرين</span>
+                        </div>
+                        <div class="goal-item">
+                            <input type="checkbox" checked>
+                            <span>احصل على 1000 نقطة</span>
+                        </div>
+                        <div class="goal-item">
+                            <input type="checkbox">
+                            <span>أكمل جميع دروس الجبر</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity Card -->
+                <div class="dashboard-card">
+                    <h3>⏱️ النشاط الأخير</h3>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <span class="activity-icon">✓</span>
+                            <div class="activity-text">
+                                <p>أكملت درس الجبر الأساسي</p>
+                                <small>قبل ساعة</small>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <span class="activity-icon">⭐</span>
+                            <div class="activity-text">
+                                <p>حصلت على 5 نجوم</p>
+                                <small>قبل يومين</small>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <span class="activity-icon">🎯</span>
+                            <div class="activity-text">
+                                <p>حققت هدف أسبوعي</p>
+                                <small>قبل 3 أيام</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>اتصل بنا</h2>
+                <p>لديك أسئلة أو اقتراحات؟</p>
+            </div>
+
+            <div class="contact-container">
+                <form class="contact-form" id="contactForm">
+                    <input type="text" placeholder="اسمك" required>
+                    <input type="email" placeholder="بريدك الإلكتروني" required>
+                    <textarea placeholder="رسالتك" rows="5" required></textarea>
+                    <button type="submit" class="btn btn-primary">إرسال الرسالة</button>
+                </form>
+
+                <div class="contact-info">
+                    <div class="info-item">
+                        <span class="info-icon">📍</span>
+                        <div>
+                            <h4>العنوان</h4>
+                            <p>الرباط، المغرب</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">📞</span>
+                        <div>
+                            <h4>الهاتف</h4>
+                            <p>+212 6 XX XXX XXXX</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">📧</span>
+                        <div>
+                            <h4>البريد</h4>
+                            <p>info@moroccanmath.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>منصة الرياضيات المغربية</h4>
+                    <p>منصة تعليمية متخصصة في تعليم الرياضيات بطريقة حديثة وتفاعلية</p>
+                </div>
+                <div class="footer-section">
+                    <h4>الروابط السريعة</h4>
+                    <ul>
+                        <li><a href="#lessons">الدروس</a></li>
+                        <li><a href="#exercises">التمارين</a></li>
+                        <li><a href="#dashboard">لوحة التحكم</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>تابعنا</h4>
+                    <div class="social-links">
+                        <a href="#">📘 Facebook</a>
+                        <a href="#">🐦 Twitter</a>
+                        <a href="#">📷 Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 منصة الرياضيات المغربية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for lesson -->
+    <div class="modal" id="lessonModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLessonModal()">&times;</span>
+            <h2 id="modalTitle">درس الجبر</h2>
+            <p id="modalDescription">تعلم أساسيات الجبر...</p>
+            <button class="btn btn-primary" onclick="startLessonContent()">ابدأ الدرس</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
