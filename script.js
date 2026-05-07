@@ -1,4 +1,14 @@
-
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  limit
+} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+import {
+  setDoc,
+  updateDoc
+} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 import { auth } from "./firebase.js";
 import {
   getFirestore,
@@ -106,6 +116,7 @@ const questions = {
 
 document.addEventListener('DOMContentLoaded', function() {
   initializeApp();
+  loadLeaderboard();
 });
 
 function initializeApp() {
@@ -256,6 +267,7 @@ function updateExerciseUI() {
     btn.onclick = function(e) {
       e.preventDefault();
       checkAnswer(index, question.correct);
+      saveUserScore();
     };
     optionsContainer.appendChild(btn);
   });
@@ -548,3 +560,70 @@ if ('IntersectionObserver' in window) {
 console.log('Moroccan Math Platform Loaded Successfully! 🎓');
 console.log('Version: 1.0.0');
 console.log('Language: العربية (Arabic) | التصميم المغربي (Moroccan Design)');
+async function saveUserScore() {
+
+  const user = auth.currentUser;
+
+  if (!user) return;
+
+  try {
+
+    await updateDoc(doc(db, "users", user.uid), {
+
+      score: score,
+
+      correctAnswers: correctAnswers,
+
+      updatedAt: new Date().toISOString()
+
+    });
+
+    console.log("Score saved!");
+
+  } catch (error) {
+
+    console.error("Error saving score:", error);
+
+  }
+
+}
+async function loadLeaderboard() {
+
+  const leaderboardList =
+    document.getElementById("leaderboardList");
+
+  if (!leaderboardList) return;
+
+  const q = query(
+    collection(db, "users"),
+    orderBy("score", "desc"),
+    limit(10)
+  );
+
+  const querySnapshot = await getDocs(q);
+
+  leaderboardList.innerHTML = "";
+
+  querySnapshot.forEach((docItem, index) => {
+
+    const data = docItem.data();
+
+    leaderboardList.innerHTML += `
+
+      <div class="leaderboard-item">
+
+        <h3>
+          ${index + 1} - 
+          ${data.firstName || ""} 
+          ${data.lastName || ""}
+        </h3>
+
+        <p>النقاط: ${data.score || 0}</p>
+
+      </div>
+
+    `;
+
+  });
+
+}
