@@ -1,5 +1,5 @@
 import { auth } from "./firebase.js";
-const db = getFirestore();
+
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword
@@ -10,7 +10,7 @@ import {
   doc,
   setDoc
 } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
-
+const db = getFirestore(auth.app);
 // ===========================
 // UTILITY FUNCTIONS
 // ===========================
