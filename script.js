@@ -10,11 +10,25 @@ import {
 // ===========================
 
 onAuthStateChanged(auth, (user) => {
+
   if (!user) {
+
     window.location.href = "login.html";
+
   } else {
+
     console.log("Utilisateur connecté :", user.email);
+
+    const userEmail = document.getElementById("userEmail");
+
+    if (userEmail) {
+
+      userEmail.innerText = user.email;
+
+    }
+
   }
+
 });
 
 window.logout = async function () {
