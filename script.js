@@ -40,7 +40,20 @@ onAuthStateChanged(auth, async (user) => {
       if (userDoc.exists()) {
 
         const data = userDoc.data();
+const studentScore =
+  document.getElementById("studentScore");
 
+const studentCorrect =
+  document.getElementById("studentCorrect");
+
+if (studentScore) {
+  studentScore.innerText = data.score || 0;
+}
+
+if (studentCorrect) {
+  studentCorrect.innerText =
+    data.correctAnswers || 0;
+}
         userEmail.innerText =
           data.firstName + " " + data.lastName;
 
